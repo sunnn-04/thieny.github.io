@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Be My Valentine 💖</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff9ecf, #ffc3e6, #ffe6f3);
+            height: 100vh;
+            overflow: hidden;
+            text-align: center;
+            color: #fff;
+        }
+
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            text-align: center;
+            color: #fff;
+            background: radial-gradient(ellipse at bottom, #1b0033 0%, #000000 100%);
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image:
+                radial-gradient(white 1px, transparent 1px),
+                radial-gradient(pink 1px, transparent 1px);
+            background-size: 80px 80px, 120px 120px;
+            background-position: 0 0, 40px 60px;
+            opacity: 0.4;
+            animation: starsMove 60s linear infinite;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 30% 40%, rgba(255, 0, 120, 0.35), transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(120, 0, 255, 0.35), transparent 50%),
+                radial-gradient(circle at 50% 80%, rgba(255, 0, 180, 0.25), transparent 50%);
+            mix-blend-mode: screen;
+            animation: nebulaPulse 12s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes starsMove {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-200px);
+            }
+        }
+
+        @keyframes nebulaPulse {
+
+            0%,
+            100% {
+                opacity: 0.8;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+
+        .screen {
+            display: none;
+            height: 100vh;
+            padding-top: 60px
+        }
+
+        .active {
+            display: block
+        }
+
+        .card {
+            width: 90%;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 30px;
+            border-radius: 25px;
+            backdrop-filter: blur(15px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .password-box {
+            height: 55px;
+            background: #fff;
+            color: #ff4d88;
+            border-radius: 15px;
+            line-height: 55px;
+            font-size: 24px;
+            letter-spacing: 10px;
+            margin-bottom: 20px;
+        }
+
+        .keypad button {
+            width: 65px;
+            height: 65px;
+            margin: 6px;
+            border: none;
+            border-radius: 18px;
+            background: linear-gradient(145deg, #ff6fa5, #ff3d7f);
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .blindContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .blindBox {
+            width: 130px;
+            height: 130px;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .blindBox:hover {
+            transform: translateY(-10px) scale(1.1)
+        }
+
+        .backBtn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #fff;
+            color: #ff4d88;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        #letterScreen .card {
+            max-width: 650px;
+            width: 95%;
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #letterText {
+            color: #f9f9f9;
+            line-height: 1.8;
+            white-space: pre-line;
+            text-align: left;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        #countdown {
+            font-size: 80px;
+            font-weight: 700;
+            margin-top: 40px;
+        }
+
+        #countScreen h2 {
+            margin-top: 20px;
+            font-size: 24px;
+        }
+
+        .answerBox {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-top: 30px;
+            min-height: 100px;
+        }
+
+        .noBtn {
+            position: relative;
+        }
+
+        button.mainBtn {
+            padding: 14px 34px;
+            border: none;
+            border-radius: 40px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(.17, .67, .83, .67);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .yesBtn {
+            background: linear-gradient(135deg, #ff4d88, #ff0066);
+            color: white;
+        }
+
+        .yesBtn:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(255, 0, 100, 0.4);
+        }
+
+        .noBtn {
+            background: white;
+            color: #ff4d88;
+            position: relative;
+            transition: all 0.45s cubic-bezier(.25, .8, .25, 1);
+        }
+
+        .noBtn::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 40px;
+            background: rgba(255, 77, 136, 0.15);
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .noBtn:hover::after {
+            opacity: 1;
+        }
+
+        .closeBtn {
+            margin-top: 25px;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            color: white;
+            background: linear-gradient(135deg, #ff4d88, #ff0066);
+            box-shadow: 0 12px 25px rgba(255, 0, 100, 0.3);
+            transition: all 0.35s cubic-bezier(.17, .67, .83, .67);
+        }
+
+        .closeBtn:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 18px 35px rgba(255, 0, 100, 0.45);
+        }
+
+        .closeBtn:active {
+            transform: scale(0.95);
+            box-shadow: 0 6px 15px rgba(255, 0, 100, 0.2);
+        }
+
+        /* modal */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .modalContent {
+            background: white;
+            color: #ff4d88;
+            padding: 40px;
+            border-radius: 25px;
+            text-align: center;
+        }
+    </style>
+
+    <script type="importmap">
+{
+"imports":{
+"three":"https://unpkg.com/three@0.160.0/build/three.module.js",
+"three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"
+}
+}
+</script>
+
+</head>
+
+<body>
+
+    <div class="screen active" id="screen1">
+        <div class="card">
+            <h2>Nhập mật khẩu 💌</h2>
+            <div class="password-box" id="passwordDisplay"></div>
+            <div class="keypad">
+                <button onclick="press(1)">1</button>
+                <button onclick="press(2)">2</button>
+                <button onclick="press(3)">3</button><br>
+                <button onclick="press(4)">4</button>
+                <button onclick="press(5)">5</button>
+                <button onclick="press(6)">6</button><br>
+                <button onclick="press(7)">7</button>
+                <button onclick="press(8)">8</button>
+                <button onclick="press(9)">9</button><br>
+                <button onclick="clearPass()">X</button>
+                <button onclick="press(0)">0</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="screen" id="screen2">
+        <button class="backBtn" onclick="switchScreen('screen2','screen1')">←</button>
+        <h2>Chọn một hộp bí mật 🎁</h2>
+        <div class="blindContainer">
+            <div class="blindBox" onclick="showLetter()">💌</div>
+            <div class="blindBox" onclick="showHeart()">💎</div>
+            <div class="blindBox" onclick="startCountdown()">🎀</div>
+        </div>
+    </div>
+
+    <!-- LETTER -->
+    <div class="screen" id="letterScreen">
+        <button class="backBtn" onclick="switchScreen('letterScreen','screen2')">←</button>
+        <div class="card">
+            <h2>Gửi em 💖</h2>
+            <div id="letterText"></div>
+        </div>
+    </div>
+
+    <div class="screen" id="heartScreen" style="background:black;">
+        <button class="backBtn" onclick="switchScreen('heartScreen','screen2')">←</button>
+        <div id="threeContainer" style="width:100%;height:100vh;"></div>
+    </div>
+    <div class="screen" id="countScreen">
+        <button class="backBtn" onclick="switchScreen('countScreen','screen2')">←</button>
+        <div id="countdown">3</div>
+        <div id="finalQuestion" style="display:none;">
+            <h2>Yêu í tiếp nhaaaa 💘</h2>
+            <div class="answerBox">
+                <button class="mainBtn yesBtn" onclick="yesAnswer()">Đồng ý ❤️</button>
+                <button class="mainBtn noBtn" id="noBtn">Không 😢</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="loveModal" class="modal">
+        <div class="modalContent">
+            <h2>Yayyyy 💖</h2>
+            <p>Mong là 2029 mình cùng đón valentine với nhau nhó 😚</p>
+            <div style="font-size:60px;">💐💘💞</div>
+            <button class="closeBtn" onclick="closeModal()">Đóng 💖</button>
+        </div>
+    </div>
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x000000, 0.0012);
+        scene.background = new THREE.Color(0x000000);
+        const pinkLight = new THREE.PointLight(0xff4d88, 2, 600);
+        pinkLight.position.set(0, 80, 120);
+        scene.add(pinkLight);
+        const starGeometry = new THREE.BufferGeometry();
+        const starCount = 30000;
+
+        const starVertices = [];
+
+        for (let i = 0; i < starCount; i++) {
+            const x = (Math.random() - 0.5) * 2000;
+            const y = (Math.random() - 0.5) * 2000;
+            const z = (Math.random() - 0.5) * 2000;
+            starVertices.push(x, y, z);
+        }
+
+        starGeometry.setAttribute(
+            'position',
+            new THREE.Float32BufferAttribute(starVertices, 3)
+        );
+
+        const starMaterial = new THREE.PointsMaterial({
+            color: 0xffffff,
+            size: 1.5,
+            transparent: true,
+            opacity: 0.8
+        });
+
+
+        const camera = new THREE.PerspectiveCamera(70, innerWidth / innerHeight, 0.1, 3000);
+        camera.position.set(0, 60, 170);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(innerWidth, innerHeight);
+        renderer.setPixelRatio(devicePixelRatio);
+        document.getElementById("threeContainer").appendChild(renderer.domElement);
+
+
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+
+        function heart2D(t) {
+            return {
+                x: 16 * Math.pow(Math.sin(t), 3),
+                y: 13 * Math.cos(t)
+                    - 5 * Math.cos(2 * t)
+                    - 2 * Math.cos(3 * t)
+                    - Math.cos(4 * t)
+            };
+        }
+
+        const heartGeo = new THREE.BufferGeometry();
+        const heartPos = [];
+        for (let i = 0; i < 38000; i++) {
+            const t = Math.random() * Math.PI * 2;
+            const p = heart2D(t);
+            const r = Math.sqrt(Math.random());
+
+            heartPos.push(
+                p.x * r * 3,
+                p.y * r * 3 + 55,
+                (Math.random() - 0.5) * 35
+            );
+        }
+        heartGeo.setAttribute("position", new THREE.Float32BufferAttribute(heartPos, 3));
+
+        const heartMat = new THREE.PointsMaterial({
+            color: 0xff4d6d,
+            size: 0.23,
+            transparent: true,
+            blending: THREE.AdditiveBlending,
+            depthWrite: false
+        });
+        scene.add(new THREE.Points(heartGeo, heartMat));
+
+
+        function createTextSprite(message) {
+            const canvas = document.createElement("canvas");
+            const ctx = canvas.getContext("2d");
+            canvas.width = 1024;
+            canvas.height = 256;
+
+            ctx.font = "bold 80px Arial";
+            ctx.fillStyle = "white";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText(message, 512, 128);
+
+            const texture = new THREE.CanvasTexture(canvas);
+            const mat = new THREE.SpriteMaterial({
+                map: texture,
+                transparent: true,
+                blending: THREE.AdditiveBlending
+            });
+
+            const sprite = new THREE.Sprite(mat);
+            sprite.scale.set(30, 7, 1);
+            return sprite;
+        }
+
+        const spiralGroup = new THREE.Group();
+        scene.add(spiralGroup);
+
+        const rings = 3;
+        const baseY = -10;
+
+        for (let l = 0; l < rings; l++) {
+
+            const ringGroup = new THREE.Group();
+            spiralGroup.add(ringGroup);
+
+            const radius = 80 - l * 15;
+            const count = 10 - l * 2;
+
+            let particleArray = [];
+
+            for (let i = 0; i < count; i++) {
+
+                const angle = (i / count) * Math.PI * 2;
+                const txt = createTextSprite("Yêu em!");
+
+                txt.position.set(
+                    Math.cos(angle) * radius,
+                    baseY,
+                    Math.sin(angle) * radius
+                );
+
+                ringGroup.add(txt);
+                const nextAngle = ((i + 1) / count) * Math.PI * 2;
+
+                for (let t = 0; t < 60; t++) {   // tăng mạnh số hạt
+
+                    const mix = t / 60;
+                    const a = angle + (nextAngle - angle) * mix;
+
+                    const offsetR = radius - 3 + Math.random() * 6;
+
+                    particleArray.push(
+                        Math.cos(a) * offsetR,
+                        baseY + (Math.random() - 0.5) * 2,
+                        Math.sin(a) * offsetR
+                    );
+                }
+            }
+            for (let k = 0; k < 1200; k++) {
+
+                const a = Math.random() * Math.PI * 2;
+                const r = radius - 4 + Math.random() * 8;
+
+                particleArray.push(
+                    Math.cos(a) * r,
+                    baseY + (Math.random() - 0.5) * 2,
+                    Math.sin(a) * r
+                );
+            }
+
+            const tinyGeo = new THREE.BufferGeometry();
+            tinyGeo.setAttribute(
+                "position",
+                new THREE.Float32BufferAttribute(particleArray, 3)
+            );
+
+            const tinyMat = new THREE.PointsMaterial({
+                color: 0xff6b81,
+                size: 0.2,
+                transparent: true,
+                opacity: 0.95,
+                blending: THREE.AdditiveBlending,
+                depthWrite: false
+            });
+
+            ringGroup.add(new THREE.Points(tinyGeo, tinyMat));
+
+            ringGroup.userData.speed = 0.001 + l * 0.0003;
+        }
+
+        const starGeo = new THREE.BufferGeometry();
+        const starPos = [];
+
+        for (let i = 0; i < 3000; i++) {
+            starPos.push(
+                (Math.random() - 0.5) * 2000,
+                (Math.random() - 0.5) * 2000,
+                (Math.random() - 0.5) * 2000
+            );
+        }
+
+        starGeo.setAttribute(
+            "position",
+            new THREE.Float32BufferAttribute(starPos, 3)
+        );
+
+        const starMat = new THREE.PointsMaterial({
+            color: 0xffffff,
+            size: 0.6,
+            transparent: true,
+            opacity: 1,
+            depthWrite: false
+        });
+
+        const stars = new THREE.Points(starGeo, starMat);
+        scene.add(stars);
+        let starTime = 0;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            stars.rotation.y += 0.0005;
+            stars.rotation.x += 0.0002;
+
+            spiralGroup.children.forEach(ring => {
+
+                ring.rotation.y += ring.userData.speed;
+
+                ring.children.forEach(obj => {
+                    if (obj.type === "Sprite") {
+                        obj.lookAt(camera.position);
+                    }
+                });
+
+            });
+
+            controls.update();
+            renderer.render(scene, camera);
+        }
+
+        animate();
+        window.addEventListener("resize", () => {
+            camera.aspect = innerWidth / innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(innerWidth, innerHeight);
+        });
+
+        window.showHeart = function () {
+            switchScreen("screen2", "heartScreen");
+            setTimeout(initHeartScene, 100);
+        };
+
+    </script>
+
+
+
+
+    <script>
+        let password = "";
+        let correctPass = "1402";
+
+        function press(num) {
+            password += num;
+            document.getElementById("passwordDisplay").innerText = "*".repeat(password.length);
+            if (password.length === 4) {
+                if (password === correctPass) {
+                    switchScreen("screen1", "screen2");
+                } else {
+                    alert("Sai rồi đó 🥺");
+                    password = "";
+                    document.getElementById("passwordDisplay").innerText = "";
+                }
+            }
+        }
+
+        function clearPass() {
+            password = "";
+            document.getElementById("passwordDisplay").innerText = "";
+        }
+
+        function switchScreen(from, to) {
+            document.getElementById(from).classList.remove("active");
+            document.getElementById(to).classList.add("active");
+        }
+
+        function showLetter() {
+            switchScreen("screen2", "letterScreen");
+            let text = `Í không phải kiểu người giỏi nói lời hoa mỹ, càng không quen viết những điều quá lãng mạn. 
+
+Í không yêu theo kiểu ồn ào hay phải lúc nào cũng dính lấy nhau. Í chỉ muốn ở cạnh em theo cách bình thường nhất – hai đứa hiểu nhau, tôn trọng nhau, và giữa vô vàn lựa chọn ngoài kia, vẫn chọn ở lại với nhau.
+
+Có thể người khác sẽ có nhiều suy nghĩ về tụi mình. Nhưng với í, chuyện này đơn giản lắm. Í thích em – không phải nhất thời. Và í muốn nghiêm túc với cảm xúc đó.
+
+Không cần những lời hứa thật dài. Chỉ cần khi cả hai còn muốn nắm tay nhau, thì mình tiếp tục đi cùng nhau.
+
+Vậy thôi. 💛`;
+
+            let i = 0;
+            document.getElementById("letterText").innerHTML = "";
+            let interval = setInterval(() => {
+                document.getElementById("letterText").innerHTML += text[i];
+                i++;
+                if (i >= text.length) clearInterval(interval);
+            }, 40);
+        }
+
+        function startCountdown() {
+            switchScreen("screen2", "countScreen");
+            document.getElementById("countdown").style.display = "block";
+            document.getElementById("finalQuestion").style.display = "none";
+            let count = 3;
+            let interval = setInterval(() => {
+                document.getElementById("countdown").innerText = count;
+                count--;
+                if (count < 0) {
+                    clearInterval(interval);
+                    document.getElementById("countdown").style.display = "none";
+                    document.getElementById("finalQuestion").style.display = "block";
+                }
+            }, 1000);
+        }
+
+        function yesAnswer() {
+            document.getElementById("loveModal").style.display = "flex";
+        }
+        function closeModal() {
+            document.getElementById("loveModal").style.display = "none";
+        }
+
+        let noBtn = document.getElementById("noBtn");
+        let placeholderCreated = false;
+
+        noBtn.addEventListener("mouseenter", () => {
+
+            const box = document.querySelector(".answerBox");
+            const rect = box.getBoundingClientRect();
+
+            // tạo placeholder giữ layout
+            if (!placeholderCreated) {
+                const placeholder = document.createElement("div");
+                placeholder.style.width = noBtn.offsetWidth + "px";
+                placeholder.style.height = noBtn.offsetHeight + "px";
+                noBtn.parentNode.insertBefore(placeholder, noBtn);
+                placeholderCreated = true;
+            }
+
+            noBtn.style.position = "absolute";
+
+            let x = Math.random() * (rect.width - noBtn.offsetWidth);
+            let y = Math.random() * (rect.height - noBtn.offsetHeight);
+
+            noBtn.style.left = x + "px";
+            noBtn.style.top = y + "px";
+
+            // hiệu ứng bounce nhẹ
+            noBtn.style.transform = "scale(1.1)";
+            setTimeout(() => {
+                noBtn.style.transform = "scale(1)";
+            }, 200);
+
+        });
+
+    </script>
+
+</body>
+
+</html>
