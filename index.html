@@ -11,12 +11,6 @@
         * {
             box-sizing: border-box
         }
-.screen {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
 
         body {
             margin: 0;
@@ -297,41 +291,48 @@
             border-radius: 25px;
             text-align: center;
         }
+
+        #countScreen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
         .countBox {
-    width: 80%;
-    max-width: 600px;
-    padding: 40px;
+            width: 80%;
+            max-width: 600px;
+            padding: 40px;
 
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(12px);
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(12px);
 
-    border-radius: 25px;
-    text-align: center;
+            border-radius: 25px;
+            text-align: center;
 
-    box-shadow: 0 0 30px rgba(255, 77, 136, 0.4);
-}
+            box-shadow: 0 0 30px rgba(255, 77, 136, 0.4);
+        }
 
-/* Countdown số to */
-#countdown {
-    font-size: 80px;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
+        /* Countdown số to */
+        #countdown {
+            font-size: 80px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
 
-/* Câu hỏi */
-#finalQuestion h2 {
-    margin-bottom: 30px;
-    line-height: 1.6;
-}
+        /* Câu hỏi */
+        #finalQuestion h2 {
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
 
-/* Nút */
-.answerBox {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
+        /* Nút */
+        .answerBox {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
     </style>
 
     <script type="importmap">
@@ -390,25 +391,24 @@
         <button class="backBtn" onclick="switchScreen('heartScreen','screen2')">←</button>
         <div id="threeContainer" style="width:100%;height:100vh;"></div>
     </div>
-   <div class="screen" id="countScreen">
-    <button class="backBtn" onclick="switchScreen('countScreen','screen2')">←</button>
+    <div class="screen" id="countScreen">
+        <button class="backBtn" onclick="switchScreen('countScreen','screen2')">←</button>
 
-    <div class="countBox">
-        <div id="countdown">3</div>
+        <div class="countBox">
+            <div id="countdown">3</div>
 
-        <div id="finalQuestion" style="display:none;">
-            <h2>
-                Cho tui cái danh cái phận nhe bà,  
-                cụ thể hơn là bồ là người yêu ớ 💘
-            </h2>
+            <div id="finalQuestion" style="display:none;">
+                <h2>
+                    Valentine vui vẻ nhe bồ, yêu em í tiếp nhoooo!! 💘
+                </h2>
 
-            <div class="answerBox">
-                <button class="mainBtn yesBtn" onclick="yesAnswer()">Đồng ý ❤️</button>
-                <button class="mainBtn noBtn" id="noBtn">Không 😢</button>
+                <div class="answerBox">
+                    <button class="mainBtn yesBtn" onclick="yesAnswer()">Đồng ý ❤️</button>
+                    <button class="mainBtn noBtn" id="noBtn">Không 😢</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
     <div id="loveModal" class="modal">
@@ -778,4 +778,3 @@ Vậy thôi. 💛`;
 
 
 </html>
-
